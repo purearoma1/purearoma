@@ -15,7 +15,6 @@
             --card-bg: #111;
             --text-color: #fff;
             --sale-red: #ff3333;
-            --promo-gold: #ffd700;
         }
 
         body {
@@ -32,22 +31,6 @@
         .hidden { display: none !important; }
         .btn { cursor: pointer; font-weight: bold; text-transform: uppercase; border-radius: 5px; transition: 0.3s; border: none; }
         
-        /* --- PROMO STRIP (NEW) --- */
-        .promo-strip {
-            background: var(--neon-blue);
-            color: #000;
-            text-align: center;
-            padding: 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
-
-        /* --- CONTACT STRIP --- */
-        .contact-strip { background: #111; color: #ccc; text-align: center; padding: 5px; font-size: 0.8rem; border-bottom: 1px solid #333; }
-
         /* --- HEADER --- */
         header {
             position: relative; height: 450px;
@@ -64,15 +47,20 @@
         h1 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; color: #fff; text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-blue); margin-bottom: 10px; }
         .tagline { font-size: 1.2rem; }
 
-        /* --- PROMISE SECTION --- */
+        /* --- PROMO & CONTACT --- */
+        .promo-strip { background: var(--neon-blue); color: #000; text-align: center; padding: 8px; font-weight: bold; font-size: 0.9rem; letter-spacing: 1px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
+        .contact-strip { background: #111; color: #ccc; text-align: center; padding: 5px; font-size: 0.8rem; border-bottom: 1px solid #333; }
+
+        /* --- FEATURES --- */
         .features-section { padding: 40px 20px; text-align: center; background: #0a0a0a; border-bottom: 1px solid #222; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--neon-blue); text-align: center; margin-bottom: 30px; }
         .features-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
         .feature-box { flex: 1; min-width: 280px; padding: 20px; background: #111; border: 1px solid #333; border-radius: 10px; }
         .feature-icon { font-size: 2rem; color: var(--neon-pink); margin-bottom: 10px; }
 
-        /* --- PRODUCT GRID (HOME) --- */
+        /* --- PRODUCT GRID --- */
         .container { max-width: 1200px; margin: 40px auto; padding: 0 15px; }
-        .section-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--neon-blue); text-align: center; margin-bottom: 30px; }
         .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
         .product-card {
@@ -85,75 +73,84 @@
         .product-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; margin: 10px 0; }
         .old-price { text-decoration: line-through; color: #888; margin-right: 10px; }
         .new-price { font-size: 1.4rem; color: var(--neon-pink); font-weight: bold; }
-        
-        .view-btn {
-            background: transparent; color: var(--neon-blue); border: 2px solid var(--neon-blue);
-            padding: 10px; width: 100%; margin-top: 10px; font-family: 'Orbitron', sans-serif;
-        }
+        .view-btn { background: transparent; color: var(--neon-blue); border: 2px solid var(--neon-blue); padding: 10px; width: 100%; margin-top: 10px; font-family: 'Orbitron', sans-serif; }
         .view-btn:hover { background: var(--neon-blue); color: #000; }
+        .rating-mini { font-size: 0.9rem; color: gold; margin-top: 5px; }
 
         /* --- PRODUCT DETAIL PAGE --- */
         #product-page { padding: 20px; max-width: 1200px; margin: 0 auto; animation: fadeIn 0.5s; }
-        
         .back-btn { background: #333; color: white; padding: 10px 20px; display: inline-block; margin-bottom: 20px; text-decoration: none; border-radius: 5px; }
         .back-btn:hover { background: var(--neon-pink); }
-
         .detail-layout { display: flex; flex-wrap: wrap; gap: 40px; background: #111; padding: 30px; border-radius: 15px; border: 1px solid var(--neon-blue); }
-        
         .detail-image-section { flex: 1; min-width: 300px; }
         .main-img-box { background: #fff; border-radius: 10px; padding: 20px; text-align: center; height: 450px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .detail-image { max-width: 100%; max-height: 100%; object-fit: contain; }
         
+        .thumbnails { display: flex; gap: 10px; margin-top: 15px; justify-content: center; flex-wrap: wrap; }
+        .thumb { width: 60px; height: 60px; object-fit: cover; border: 2px solid #333; border-radius: 5px; cursor: pointer; background: #fff; transition: 0.3s; }
+        .thumb:hover { border-color: var(--neon-pink); transform: scale(1.1); }
+
         .detail-info { flex: 1; min-width: 300px; }
         .detail-title { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--neon-blue); margin-top: 0; margin-bottom: 10px; }
         .detail-meta { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
         .meta-tag { background: #222; border: 1px solid #444; padding: 5px 12px; border-radius: 50px; font-size: 0.85rem; color: #ccc; }
-        .meta-tag i { color: var(--neon-pink); margin-right: 5px; }
+        .meta-tag i { color: gold; margin-right: 5px; }
 
         .detail-price-box { font-size: 2.2rem; color: var(--neon-pink); margin: 15px 0; font-weight: bold; border-bottom: 1px solid #333; padding-bottom: 15px; }
-        
         .detail-desc { color: #ccc; line-height: 1.8; margin-bottom: 20px; font-size: 1rem; text-align: justify; }
-        .detail-desc strong { color: var(--neon-blue); }
         
-        /* Specs */
         .specs-box { background: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
         .spec-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #333; font-size: 0.9rem; }
         .spec-row:last-child { border: none; }
         .spec-label { color: #888; }
         .spec-value { color: #fff; font-weight: bold; }
 
-        /* Quantity */
         .qty-wrapper { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-        .qty-label { font-weight: bold; color: #fff; }
         .qty-controls { display: flex; align-items: center; background: #000; border: 1px solid var(--neon-blue); border-radius: 5px; }
         .qty-btn { background: transparent; color: var(--neon-blue); border: none; padding: 10px 15px; font-size: 1.2rem; cursor: pointer; }
-        .qty-btn:hover { background: rgba(0, 255, 255, 0.1); }
         .qty-display { padding: 0 15px; font-weight: bold; color: #fff; min-width: 30px; text-align: center; }
 
-        /* Order Form & Bill Breakdown */
         .order-box { background: #1a1a1a; padding: 20px; border-radius: 10px; border: 1px solid #333; }
-        .order-header { color: #fff; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 15px; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; color: #aaa; margin-bottom: 5px; }
         .form-input { width: 100%; padding: 12px; background: #000; border: 1px solid #444; color: white; border-radius: 5px; box-sizing: border-box; }
+        .btn-whatsapp { background: #25D366; color: white; width: 100%; padding: 15px; margin-top: 10px; font-size: 1rem; }
+        .btn-email { background: #EA4335; color: white; width: 100%; padding: 15px; margin-top: 10px; font-size: 1rem; }
         
         .bill-summary { background: #000; padding: 15px; border-radius: 5px; border: 1px solid #333; margin-bottom: 15px; font-size: 0.95rem; }
         .bill-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #ccc; }
         .bill-row.total { border-top: 1px solid #444; padding-top: 10px; margin-top: 10px; color: var(--neon-pink); font-weight: bold; font-size: 1.2rem; }
         .free-tag { color: var(--neon-blue); font-weight: bold; animation: pulse 1s infinite; }
 
-        .btn-whatsapp { background: #25D366; color: white; width: 100%; padding: 15px; margin-top: 10px; font-size: 1rem; }
-        .btn-email { background: #EA4335; color: white; width: 100%; padding: 15px; margin-top: 10px; font-size: 1rem; }
+        /* --- REVIEW SECTION --- */
+        .reviews-wrapper { margin-top: 40px; border-top: 1px solid #333; padding-top: 30px; }
+        .review-card { background: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid var(--neon-pink); }
+        .r-header { display: flex; justify-content: space-between; margin-bottom: 5px; }
+        .r-name { font-weight: bold; color: #fff; }
+        .r-stars { color: gold; }
+        .r-text { color: #ccc; font-size: 0.9rem; font-style: italic; }
+        .review-form { background: #111; padding: 20px; border-radius: 10px; border: 1px solid #333; margin-top: 20px; }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER & ADMIN --- */
         footer { background: #000; padding: 40px 20px; border-top: 2px solid var(--neon-pink); text-align: center; margin-top: 50px; }
-        .return-btn { background: transparent; color: var(--sale-red); border: 1px solid var(--sale-red); padding: 10px 20px; margin-top: 20px; }
-        .return-btn:hover { background: var(--sale-red); color: white; }
+        .return-btn, .admin-btn { background: transparent; border: 1px solid var(--sale-red); padding: 10px 20px; margin: 10px; color: #fff; cursor: pointer; }
+        .admin-btn { border-color: var(--neon-blue); color: var(--neon-blue); }
+        .admin-btn:hover { background: var(--neon-blue); color: #000; }
 
-        /* --- RETURN MODAL --- */
-        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 10px; box-sizing: border-box; }
-        .modal-content { background: #111; border: 2px solid var(--sale-red); padding: 25px; border-radius: 15px; width: 100%; max-width: 450px; position: relative; }
+        /* --- MODALS --- */
+        .modal { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); align-items: center; justify-content: center; padding: 10px; box-sizing: border-box; overflow-y: auto; }
+        .modal-content { background: #111; border: 2px solid var(--sale-red); padding: 25px; border-radius: 15px; width: 100%; max-width: 500px; position: relative; margin: auto; }
         .close { position: absolute; top: 10px; right: 15px; color: #fff; font-size: 30px; cursor: pointer; }
+        
+        #adminModal .modal-content { border-color: var(--neon-blue); max-width: 600px; }
+        
+        /* Admin Dashboard Styles */
+        .admin-list { max-height: 200px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #333; padding: 10px; }
+        .admin-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; padding: 10px 0; }
+        .admin-item div { color: white; }
+        .admin-actions button { padding: 5px 10px; font-size: 0.8rem; margin-left: 5px; }
+        .btn-edit { background: var(--neon-blue); border: none; cursor: pointer; border-radius: 3px; }
+        .btn-del { background: var(--sale-red); color: white; border: none; cursor: pointer; border-radius: 3px; }
 
         #offline-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
 
@@ -165,18 +162,13 @@
 
     <div id="offline-screen">
         <i class="fas fa-wifi" style="font-size: 4rem; color: red; margin-bottom: 20px;"></i>
-        <h2 style="color: white;">NO INTERNET</h2>
-        <p style="color: #aaa;">Please connect to internet to use PureAroma.</p>
+        <h2>NO INTERNET</h2>
+        <p>Please connect to internet to use PureAroma.</p>
         <button onclick="window.location.reload()" style="margin-top: 20px; padding: 10px 20px;">RETRY</button>
     </div>
 
-    <div class="promo-strip">
-        🎉 SPECIAL OFFER: BUY 2+ PRODUCTS & GET FREE DELIVERY! 🎉
-    </div>
-
-    <div class="contact-strip">
-        Email: purearoma001@gmail.com | WhatsApp: 0315 6968247
-    </div>
+    <div class="promo-strip">🎉 SPECIAL OFFER: BUY 2+ PRODUCTS & GET FREE DELIVERY! 🎉</div>
+    <div class="contact-strip">Email: purearoma001@gmail.com | WhatsApp: 0315 6968247</div>
 
     <div id="home-view">
         <header>
@@ -207,14 +199,17 @@
         <div class="detail-layout">
             <div class="detail-image-section">
                 <div class="main-img-box"><img id="detail-img" src="" alt="Perfume" class="detail-image"></div>
+                <div class="thumbnails" id="thumbnail-container"></div>
             </div>
 
             <div class="detail-info">
                 <h1 id="detail-title" class="detail-title"></h1>
+                
                 <div class="detail-meta">
+                    <span class="meta-tag" id="detail-rating-box"></span>
                     <span class="meta-tag"><i class="far fa-clock"></i> <span id="detail-lasting"></span></span>
-                    <span class="meta-tag"><i class="fas fa-star"></i> 5.0 Rating</span>
                 </div>
+
                 <div class="detail-price-box">
                     <span id="detail-old-price" style="text-decoration: line-through; color: #888; font-size: 1.2rem; margin-right: 10px;"></span>
                     <span id="detail-price"></span>
@@ -229,7 +224,7 @@
                 <div id="detail-desc" class="detail-desc"></div>
 
                 <div class="qty-wrapper">
-                    <span class="qty-label">Quantity:</span>
+                    <span class="qty-label" style="color:#fff;">Quantity:</span>
                     <div class="qty-controls">
                         <button class="qty-btn" onclick="changeQty(-1)">-</button>
                         <span class="qty-display" id="qty-count">1</span>
@@ -239,20 +234,35 @@
 
                 <div class="order-box">
                     <h3 class="order-header">Complete Order</h3>
-                    
                     <div class="bill-summary">
                         <div class="bill-row"><span>Item Price:</span> <span id="bill-price"></span></div>
                         <div class="bill-row"><span>Quantity:</span> <span id="bill-qty"></span></div>
                         <div class="bill-row"><span>Delivery:</span> <span id="bill-delivery"></span></div>
                         <div class="bill-row total"><span>Grand Total:</span> <span id="bill-total"></span></div>
                     </div>
-
-                    <div class="form-group"><label>Your Name</label><input type="text" id="order-name" class="form-input" placeholder="Full Name"></div>
-                    <div class="form-group"><label>Phone Number</label><input type="tel" id="order-phone" class="form-input" placeholder="03xx-xxxxxxx"></div>
-                    <div class="form-group"><label>Address</label><textarea id="order-address" class="form-input" rows="2" placeholder="Complete Address"></textarea></div>
-                    
+                    <div class="form-group"><label>Name</label><input type="text" id="order-name" class="form-input" placeholder="Full Name"></div>
+                    <div class="form-group"><label>Phone</label><input type="tel" id="order-phone" class="form-input" placeholder="03xx-xxxxxxx"></div>
+                    <div class="form-group"><label>Address</label><textarea id="order-address" class="form-input" rows="2" placeholder="Address"></textarea></div>
                     <button class="btn btn-whatsapp" onclick="placeOrder('whatsapp')"><i class="fab fa-whatsapp"></i> Order via WhatsApp</button>
                     <button class="btn btn-email" onclick="placeOrder('email')"><i class="fas fa-envelope"></i> Order via Email</button>
+                </div>
+
+                <div class="reviews-wrapper">
+                    <h2 style="color:var(--neon-blue); font-family:'Orbitron';">Customer Reviews</h2>
+                    <div id="reviews-list"></div>
+                    
+                    <div class="review-form">
+                        <h3 style="color:#fff;">Write a Review</h3>
+                        <div class="form-group"><input type="text" id="rev-name" class="form-input" placeholder="Your Name"></div>
+                        <div class="form-group">
+                            <select id="rev-rating" class="form-input">
+                                <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                                <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                            </select>
+                        </div>
+                        <div class="form-group"><textarea id="rev-text" class="form-input" placeholder="Your experience..."></textarea></div>
+                        <button class="btn" style="background:var(--neon-pink); color:#fff; width:100%; padding:10px;" onclick="addReview()">Submit Review</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -261,14 +271,15 @@
     <footer>
         <h2 style="font-family: 'Orbitron'; color: white;">PureAroma</h2>
         <p style="color: #aaa;">Email: purearoma001@gmail.com</p>
-        <button class="btn return-btn" onclick="document.getElementById('returnModal').style.display='flex'">Request Return / Exchange</button>
+        <button class="btn return-btn" onclick="document.getElementById('returnModal').style.display='flex'">Return / Exchange</button>
+        <button class="btn admin-btn" onclick="openAdmin()">Admin Panel</button>
         <p style="margin-top: 30px; color: #555;">&copy; 2025 PureAroma. All Rights Reserved.</p>
     </footer>
 
     <div id="returnModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="document.getElementById('returnModal').style.display='none'">&times;</span>
-            <h2 style="color:var(--sale-red); margin-top:0;">Return Request</h2>
+            <h2 style="color:var(--sale-red);">Return Request</h2>
             <div class="form-group"><label>Name</label><input type="text" id="r_name" class="form-input"></div>
             <div class="form-group"><label>Product Name</label><input type="text" id="r_prod" class="form-input"></div>
             <div class="form-group"><label>Reason</label><textarea id="r_reason" class="form-input"></textarea></div>
@@ -277,19 +288,51 @@
         </div>
     </div>
 
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAdmin()">&times;</span>
+            <h2 style="color:var(--neon-blue);">Admin Dashboard</h2>
+            
+            <div style="color: #ccc; margin-bottom: 10px;">Existing Products:</div>
+            <div id="admin-product-list" class="admin-list">
+                </div>
+
+            <hr style="border-color: #333; margin: 20px 0;">
+
+            <h3 id="admin-form-title" style="color:white; margin-top:0;">Add / Edit Product</h3>
+            <div class="form-group"><label>Product Name</label><input type="text" id="adm-name" class="form-input"></div>
+            <div class="form-group"><label>Old Price (Rs)</label><input type="number" id="adm-old" class="form-input"></div>
+            <div class="form-group"><label>New Price (Rs)</label><input type="number" id="adm-new" class="form-input"></div>
+            
+            <div class="form-group"><label>Lasting (e.g. 8 Hours)</label><input type="text" id="adm-lasting" class="form-input"></div>
+            <div class="form-group"><label>Notes</label><input type="text" id="adm-notes" class="form-input"></div>
+            <div class="form-group"><label>Best For</label><input type="text" id="adm-best" class="form-input"></div>
+            <div class="form-group"><label>Intensity</label><input type="text" id="adm-intensity" class="form-input"></div>
+
+            <div class="form-group"><label>Main Image (Upload New)</label><input type="file" id="adm-img" class="form-input" accept="image/*"></div>
+            <div class="form-group"><label>Gallery URLs (Comma separated)</label><input type="text" id="adm-gallery" class="form-input" placeholder="https://..., https://..."></div>
+            
+            <div class="form-group"><label>Description</label><textarea id="adm-desc" class="form-input" rows="3"></textarea></div>
+            
+            <button class="btn" id="adm-save-btn" style="background:var(--neon-blue); width:100%; padding:10px;" onclick="saveProduct()">Add Product</button>
+        </div>
+    </div>
+
     <script>
-        const products = [
+        // --- BASE DATA ---
+        let defaultProducts = [
             {
                 id: 0,
                 title: "Dior Sauvage",
                 oldPrice: 4549,
                 price: 3199,
                 img: "https://fimgs.net/mdimg/perfume/375x500.31861.jpg",
+                gallery: ["https://fimgs.net/mdimg/perfume/375x500.31861.jpg"],
                 lasting: "8-10 Hours",
                 notes: "Bergamot, Pepper, Amberwood",
                 bestFor: "Daily / Office / Gym",
                 intensity: "Strong",
-                desc: `<p><strong>The Essence of Wild Nature</strong></p><p>Dior Sauvage is not just a perfume; it is a declaration of freedom. Inspired by the vast, open skies and the scorching sun beating down on a rocky desert landscape, this fragrance captures the raw and noble essence of man.</p><p><strong>Olfactory Journey:</strong></p><p>It opens with a powerful burst of fresh <strong>Reggio di Calabria Bergamot</strong>, offering a juicy and spicy freshness. The heart is dominated by <strong>Sichuan Pepper</strong>, adding a metallic and masculine edge. Finally, the base settles into a trail of <strong>Ambroxan</strong>, derived from precious ambergris, leaving a woody, marine trail that lasts all day.</p><p><strong>Why Choose Sauvage?</strong></p><p>This impression is crafted with high-quality oils to ensure 98% closeness to the original. It projects confidence, strength, and sophistication. Perfect for the modern man who is untamed and unapologetic.</p>`
+                desc: `<p><strong>The Essence of Wild Nature</strong></p><p>Dior Sauvage is not just a perfume; it is a declaration of freedom.</p>`
             },
             {
                 id: 1,
@@ -297,11 +340,12 @@
                 oldPrice: 7599,
                 price: 4499,
                 img: "https://fimgs.net/mdimg/perfume/375x500.9828.jpg",
+                gallery: ["https://fimgs.net/mdimg/perfume/375x500.9828.jpg"],
                 lasting: "10-12 Hours",
                 notes: "Pineapple, Birch, Musk",
                 bestFor: "Events / Dates",
                 intensity: "Very Strong",
-                desc: `<p><strong>The King of Fragrances</strong></p><p>Creed Aventus is the most legendary niche fragrance in the world, representing power, vision, and success. Inspired by the dramatic life of a historic emperor, this scent is for the man who is destined for greatness.</p><p><strong>A Scent of Victory:</strong></p><p>The fragrance opens with an iconic, mouth-watering blast of hand-picked <strong>Pineapple</strong> and Blackcurrant. As it settles, the smoky heart of <strong>Birch</strong> and Patchouli takes over, giving it that masculine, boss-like vibe. The dry down is a rich, sensual blend of <strong>Musk and Oakmoss</strong>.</p><p><strong>Master Copy Quality:</strong></p><p>Our edition offers the same beast-mode projection and longevity. It commands attention when you walk into a room. Ideal for weddings, corporate meetings, and romantic dates where you want to leave a lasting impression.</p>`
+                desc: `<p><strong>The King of Fragrances</strong></p><p>Creed Aventus is the most legendary niche fragrance in the world.</p>`
             },
             {
                 id: 2,
@@ -309,11 +353,12 @@
                 oldPrice: 1800,
                 price: 1449,
                 img: "https://fimgs.net/mdimg/perfume/375x500.51816.jpg",
+                gallery: ["https://fimgs.net/mdimg/perfume/375x500.51816.jpg"],
                 lasting: "8+ Hours",
                 notes: "Oud, Vanilla, Woods",
                 bestFor: "Winter / Night",
                 intensity: "Moderate",
-                desc: `<p><strong>The Gold Standard of Eastern Luxury</strong></p><p>Royal Oud (Inspired by Amber Oud) is a fragrance that speaks the language of luxury. It is warm, inviting, and incredibly sophisticated. It smells like liquid gold, perfectly bridging the gap between traditional Eastern perfumery and modern Western elegance.</p><p><strong>Warm & Sweet Harmony:</strong></p><p>The scent starts with fresh citrus notes but quickly transforms into a heart of sweet <strong>Melon and Pineapple</strong> blended with warm Amber. The base is where the magic happens—creamy <strong>Vanilla</strong>, rich <strong>Woody notes</strong>, and a touch of soft Oud create a cozy, intimate aura.</p><p><strong>Perfect for Cold Nights:</strong></p><p>This is the ultimate winter fragrance. It wraps you in a blanket of warmth. It is not overpowering but has a majestic presence that people around you will crave.</p>`
+                desc: `<p><strong>The Gold Standard</strong></p><p>Royal Oud is a fragrance that speaks the language of luxury.</p>`
             },
             {
                 id: 3,
@@ -321,33 +366,230 @@
                 oldPrice: 4500,
                 price: 2499,
                 img: "https://www.junaidjamshed.com/media/catalog/product/j/a/janan_-1_1__2.jpg",
+                gallery: ["https://www.junaidjamshed.com/media/catalog/product/j/a/janan_-1_1__2.jpg"],
                 lasting: "6-8 Hours",
                 notes: "Leather, Musk, Bergamot",
                 bestFor: "Traditional / Evening",
                 intensity: "Strong",
-                desc: `<p><strong>The Soul of Pakistan</strong></p><p>J. Janan by Junaid Jamshed is more than a perfume; it is a cultural icon. It represents the elegance of the Eastern man. It is clean, sharp, and undeniably masculine, designed to complement Shalwar Kameez and formal attire perfectly.</p><p><strong>Crisp & Classic:</strong></p><p>The scent opens with a burst of energetic <strong>Bergamot and fruity notes</strong>. It is fresh and uplifting. The heart introduces earthy and woody tones, leading to a solid base of <strong>Leather and Musk</strong>. It smells expensive, dignified, and pure.</p><p><strong>A Versatile Masterpiece:</strong></p><p>Whether you are going to Jummah prayer, an office meeting, or a family gathering, Janan fits every occasion. It is 100% original and comes in the official packaging.</p>`
+                desc: `<p><strong>The Soul of Pakistan</strong></p><p>J. Janan by Junaid Jamshed is a cultural icon.</p>`
             }
         ];
 
+        let products = [];
+        const dummyUsers = ["Ali Ahmed", "Zainab K.", "Hammad Raza", "Usman", "Sara Bilal"];
+        const dummyComments = ["Simply amazing!", "Best perfume ever.", "Recommended.", "Original product.", "Will order again."];
+
+        let reviews = {};
         let currentProduct = null;
         let currentQty = 1;
         let deliveryCost = 200;
+        let editingProductId = null; // To track if we are editing
 
+        // --- INIT ---
         window.onload = function() {
             checkInternet();
+            
+            // Load or Set Data
+            const storedProds = localStorage.getItem('myProducts');
+            if(storedProds) {
+                products = JSON.parse(storedProds);
+            } else {
+                products = defaultProducts;
+                // Add dummy stats for first load
+                initDummyData();
+                localStorage.setItem('myProducts', JSON.stringify(products));
+            }
+
+            // Load reviews
+            const storedRevs = localStorage.getItem('myReviews');
+            if(storedRevs) reviews = JSON.parse(storedRevs);
+            else initReviewData(); // Fill if empty
+
             renderProducts();
         };
 
+        function initDummyData() {
+            products.forEach(p => {
+                if(!p.rating) p.rating = (Math.random() * (5.0 - 4.2) + 4.2).toFixed(1);
+                if(!p.reviewCount) p.reviewCount = Math.floor(Math.random() * 400) + 100;
+            });
+        }
+
+        function initReviewData() {
+            products.forEach(p => {
+                reviews[p.id] = [];
+                for(let i=0; i<3; i++) {
+                    reviews[p.id].push({
+                        name: dummyUsers[Math.floor(Math.random() * dummyUsers.length)],
+                        rating: 5,
+                        text: dummyComments[Math.floor(Math.random() * dummyComments.length)]
+                    });
+                }
+            });
+            localStorage.setItem('myReviews', JSON.stringify(reviews));
+        }
+
+        // --- ADMIN FUNCTIONS ---
+        function openAdmin() {
+            const pass = prompt("Enter Admin Password:");
+            if(pass === "admin_upload") {
+                renderAdminList();
+                resetAdminForm();
+                document.getElementById('adminModal').style.display = "flex";
+            } else {
+                alert("Wrong Password!");
+            }
+        }
+
+        function closeAdmin() {
+            document.getElementById('adminModal').style.display = "none";
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('admin-product-list');
+            list.innerHTML = "";
+            products.forEach(p => {
+                list.innerHTML += `
+                    <div class="admin-item">
+                        <div>${p.title} (Rs. ${p.price})</div>
+                        <div class="admin-actions">
+                            <button class="btn-edit" onclick="editProduct(${p.id})">Edit</button>
+                            <button class="btn-del" onclick="deleteProduct(${p.id})">Delete</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function resetAdminForm() {
+            editingProductId = null;
+            document.getElementById('admin-form-title').innerText = "Add New Product";
+            document.getElementById('adm-save-btn').innerText = "Add Product";
+            
+            // Clear fields
+            document.getElementById('adm-name').value = "";
+            document.getElementById('adm-old').value = "";
+            document.getElementById('adm-new').value = "";
+            document.getElementById('adm-lasting').value = "";
+            document.getElementById('adm-notes').value = "";
+            document.getElementById('adm-best').value = "";
+            document.getElementById('adm-intensity').value = "";
+            document.getElementById('adm-gallery').value = "";
+            document.getElementById('adm-desc').value = "";
+            document.getElementById('adm-img').value = "";
+        }
+
+        function editProduct(id) {
+            const prod = products.find(p => p.id === id);
+            if(!prod) return;
+
+            editingProductId = id;
+            document.getElementById('admin-form-title').innerText = "Edit Product: " + prod.title;
+            document.getElementById('adm-save-btn').innerText = "Update Product";
+
+            document.getElementById('adm-name').value = prod.title;
+            document.getElementById('adm-old').value = prod.oldPrice;
+            document.getElementById('adm-new').value = prod.price;
+            document.getElementById('adm-lasting').value = prod.lasting;
+            document.getElementById('adm-notes').value = prod.notes;
+            document.getElementById('adm-best').value = prod.bestFor;
+            document.getElementById('adm-intensity').value = prod.intensity;
+            document.getElementById('adm-gallery').value = prod.gallery ? prod.gallery.join(', ') : "";
+            document.getElementById('adm-desc').value = prod.desc.replace(/<[^>]*>?/gm, ''); // Strip HTML for edit
+        }
+
+        function deleteProduct(id) {
+            if(confirm("Are you sure you want to delete this product?")) {
+                products = products.filter(p => p.id !== id);
+                localStorage.setItem('myProducts', JSON.stringify(products));
+                renderProducts();
+                renderAdminList();
+            }
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('adm-name').value;
+            const oldP = document.getElementById('adm-old').value;
+            const newP = document.getElementById('adm-new').value;
+            const lasting = document.getElementById('adm-lasting').value;
+            const notes = document.getElementById('adm-notes').value;
+            const best = document.getElementById('adm-best').value;
+            const intensity = document.getElementById('adm-intensity').value;
+            const galleryStr = document.getElementById('adm-gallery').value;
+            const desc = document.getElementById('adm-desc').value;
+            const fileInput = document.getElementById('adm-img');
+
+            if(!name || !newP) { alert("Name and Price are required."); return; }
+
+            const galleryArr = galleryStr ? galleryStr.split(',').map(s => s.trim()) : [];
+
+            // Helper to finalize save
+            const finalizeSave = (imgSrc) => {
+                if(editingProductId !== null) {
+                    // Update Existing
+                    const index = products.findIndex(p => p.id === editingProductId);
+                    if(index !== -1) {
+                        products[index].title = name;
+                        products[index].oldPrice = oldP;
+                        products[index].price = newP;
+                        products[index].lasting = lasting;
+                        products[index].notes = notes;
+                        products[index].bestFor = best;
+                        products[index].intensity = intensity;
+                        products[index].desc = `<p>${desc}</p>`;
+                        if(imgSrc) products[index].img = imgSrc;
+                        if(galleryArr.length > 0) products[index].gallery = galleryArr;
+                        else if(!products[index].gallery) products[index].gallery = [products[index].img];
+                    }
+                } else {
+                    // Add New
+                    const newProd = {
+                        id: Date.now(),
+                        title: name,
+                        oldPrice: oldP || newP,
+                        price: newP,
+                        img: imgSrc || "https://via.placeholder.com/300",
+                        gallery: galleryArr.length > 0 ? galleryArr : [imgSrc],
+                        lasting: lasting || "Standard",
+                        notes: notes || "Mixed",
+                        bestFor: best || "Any",
+                        intensity: intensity || "Medium",
+                        desc: `<p>${desc}</p>`,
+                        rating: 5.0,
+                        reviewCount: 1
+                    };
+                    products.push(newProd);
+                }
+
+                localStorage.setItem('myProducts', JSON.stringify(products));
+                renderProducts();
+                renderAdminList();
+                resetAdminForm();
+                alert(editingProductId !== null ? "Updated!" : "Added!");
+            };
+
+            // Handle Image
+            if(fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) { finalizeSave(e.target.result); };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                finalizeSave(null); // Keep old image if editing, or placeholder if new
+            }
+        }
+
+        // --- RENDER ---
         function renderProducts() {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = "";
             products.forEach((prod, index) => {
                 const discount = Math.round(((prod.oldPrice - prod.price) / prod.oldPrice) * 100);
                 grid.innerHTML += `
-                    <div class="product-card" onclick="showProduct(${index})">
+                    <div class="product-card" onclick="showProduct(${prod.id})">
                         <div class="sale-badge">${discount}% OFF</div>
                         <img src="${prod.img}" class="product-image">
                         <div class="product-title">${prod.title}</div>
+                        <div class="rating-mini">⭐ ${prod.rating} (${prod.reviewCount})</div>
                         <div><span class="old-price">Rs. ${prod.oldPrice}</span><span class="new-price">Rs. ${prod.price}</span></div>
                         <button class="btn view-btn">View Details</button>
                     </div>
@@ -355,28 +597,63 @@
             });
         }
 
-        function showProduct(index) {
-            currentProduct = products[index];
+        function showProduct(id) {
+            currentProduct = products.find(p => p.id === id);
             currentQty = 1;
             updateBill();
 
             document.getElementById('detail-img').src = currentProduct.img;
             document.getElementById('detail-title').innerText = currentProduct.title;
-            document.getElementById('detail-lasting').innerText = currentProduct.lasting;
             document.getElementById('detail-old-price').innerText = "Rs. " + currentProduct.oldPrice;
             document.getElementById('detail-price').innerText = "Rs. " + currentProduct.price;
             document.getElementById('detail-desc').innerHTML = currentProduct.desc;
             document.getElementById('spec-notes').innerText = currentProduct.notes;
             document.getElementById('spec-best').innerText = currentProduct.bestFor;
             document.getElementById('spec-intensity').innerText = currentProduct.intensity;
+            document.getElementById('detail-rating-box').innerHTML = `<i class="fas fa-star" style="color:gold;"></i> <strong>${currentProduct.rating}/5.0</strong> (${currentProduct.reviewCount} Verified)`;
+            document.getElementById('detail-lasting').innerText = currentProduct.lasting;
 
-            document.getElementById('order-name').value = "";
-            document.getElementById('order-phone').value = "";
-            document.getElementById('order-address').value = "";
+            // Gallery
+            const thumbContainer = document.getElementById('thumbnail-container');
+            thumbContainer.innerHTML = "";
+            if(currentProduct.gallery && currentProduct.gallery.length > 0) {
+                currentProduct.gallery.forEach(src => {
+                    thumbContainer.innerHTML += `<img src="${src}" class="thumb" onclick="switchImage('${src}')">`;
+                });
+            } else {
+                thumbContainer.innerHTML += `<img src="${currentProduct.img}" class="thumb" onclick="switchImage('${currentProduct.img}')">`;
+            }
+
+            renderReviews(currentProduct.id);
 
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('product-page').classList.remove('hidden');
             window.scrollTo(0,0);
+        }
+
+        function switchImage(src) { document.getElementById('detail-img').src = src; }
+
+        function renderReviews(prodId) {
+            const list = document.getElementById('reviews-list');
+            list.innerHTML = "";
+            const prodReviews = reviews[prodId] || [];
+            prodReviews.forEach(r => {
+                const stars = "⭐".repeat(r.rating);
+                list.innerHTML += `<div class="review-card"><div class="r-header"><span class="r-name">${r.name}</span> <span class="r-stars">${stars}</span></div><div class="r-text">"${r.text}"</div></div>`;
+            });
+        }
+
+        function addReview() {
+            const name = document.getElementById('rev-name').value;
+            const rating = document.getElementById('rev-rating').value;
+            const text = document.getElementById('rev-text').value;
+            if(!name || !text) { alert("Please fill details."); return; }
+            const newRev = { name, rating, text };
+            if(!reviews[currentProduct.id]) reviews[currentProduct.id] = [];
+            reviews[currentProduct.id].push(newRev);
+            localStorage.setItem('myReviews', JSON.stringify(reviews));
+            renderReviews(currentProduct.id);
+            document.getElementById('rev-name').value = ""; document.getElementById('rev-text').value = "";
         }
 
         function changeQty(delta) {
@@ -386,28 +663,15 @@
         }
 
         function updateBill() {
-            // Logic: Qty >= 2 ? Delivery = 0 : Delivery = 200
-            if(currentQty >= 2) {
-                deliveryCost = 0;
-            } else {
-                deliveryCost = 200;
-            }
-
+            if(currentQty >= 2) deliveryCost = 0; else deliveryCost = 200;
             const itemTotal = currentProduct.price * currentQty;
             const grandTotal = itemTotal + deliveryCost;
-
             document.getElementById('qty-count').innerText = currentQty;
             document.getElementById('bill-price').innerText = "Rs. " + currentProduct.price;
             document.getElementById('bill-qty').innerText = currentQty;
-            
-            // Show FREE tag if delivery is 0
             const delElement = document.getElementById('bill-delivery');
-            if(deliveryCost === 0) {
-                delElement.innerHTML = "<span class='free-tag'>FREE</span>";
-            } else {
-                delElement.innerText = "Rs. 200";
-            }
-
+            if(deliveryCost === 0) delElement.innerHTML = "<span class='free-tag'>FREE</span>";
+            else delElement.innerText = "Rs. 200";
             document.getElementById('bill-total').innerText = "Rs. " + grandTotal;
         }
 
@@ -421,22 +685,14 @@
             const name = document.getElementById('order-name').value;
             const phone = document.getElementById('order-phone').value;
             const address = document.getElementById('order-address').value;
-
             if(!name || !phone || !address) { alert("Please fill all details."); return; }
-
             const itemTotal = currentProduct.price * currentQty;
             const grandTotal = itemTotal + deliveryCost;
-            
             let deliveryText = (deliveryCost === 0) ? "FREE (Buy 2+ Offer)" : "Rs. 200";
-
             const msg = `*NEW ORDER - PureAroma*\n------------------\nProduct: ${currentProduct.title}\nQty: ${currentQty}\nPrice/Unit: Rs. ${currentProduct.price}\nItem Total: Rs. ${itemTotal}\nDelivery: ${deliveryText}\n*GRAND TOTAL: Rs. ${grandTotal}*\n------------------\nName: ${name}\nPhone: ${phone}\nAddress: ${address}`;
             const encoded = encodeURIComponent(msg);
-
-            if(method === 'whatsapp') {
-                window.location.href = `https://api.whatsapp.com/send?phone=923156968247&text=${encoded}`;
-            } else {
-                window.location.href = `mailto:purearoma001@gmail.com?subject=New Order&body=${encoded}`;
-            }
+            if(method === 'whatsapp') window.location.href = `https://api.whatsapp.com/send?phone=923156968247&text=${encoded}`;
+            else window.location.href = `mailto:purearoma001@gmail.com?subject=New Order&body=${encoded}`;
         }
 
         function submitReturn() {
