@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PureAroma - Mega Sale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --bg-color: #050505;
+            --card-bg: #111;
+            --text-color: #fff;
+            --sale-red: #ff3333;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent; /* Fix for mobile tap highlight */
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            height: 450px;
+            background-image: url('https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1600&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid var(--neon-pink);
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 10px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-blue);
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .tagline { color: #fff; font-size: 1.2rem; margin-bottom: 20px; }
+        .founders { font-size: 0.9rem; letter-spacing: 2px; color: var(--neon-pink); border: 1px solid var(--neon-pink); padding: 8px 20px; border-radius: 50px; background: rgba(0,0,0,0.6); font-weight: bold; }
+
+        /* Contact Strip */
+        .contact-strip {
+            background: rgba(0, 255, 255, 0.1);
+            color: var(--neon-blue);
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--neon-blue);
+        }
+
+        /* Features */
+        .features-section { padding: 40px 20px; text-align: center; background: #0a0a0a; border-bottom: 1px solid #222; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: var(--neon-blue); margin-bottom: 30px; }
+        .features-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+        .feature-box { flex: 1; min-width: 280px; padding: 20px; background: #111; border: 1px solid #333; border-radius: 10px; }
+        .feature-icon { font-size: 2rem; color: var(--neon-pink); margin-bottom: 10px; }
+
+        /* Products */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 15px; }
+        .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+        .product-card {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .product-card:hover { border-color: var(--neon-blue); transform: translateY(-5px); }
+
+        .sale-badge { position: absolute; top: 15px; right: 15px; background: var(--sale-red); color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; font-family: 'Orbitron', sans-serif; font-size: 0.8rem; z-index: 5; }
+        .product-image { width: 100%; height: 220px; object-fit: contain; background: #fff; border-radius: 10px; border: 1px solid var(--neon-pink); margin-bottom: 15px; }
+        .product-title { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; margin: 10px 0; color: #fff; }
+        .price-container { margin: 10px 0; }
+        .old-price { text-decoration: line-through; color: #888; margin-right: 10px; }
+        .new-price { font-size: 1.4rem; color: var(--neon-pink); font-weight: bold; }
+
+        /* Buttons */
+        .buy-btn {
+            background: transparent; color: var(--neon-blue); border: 2px solid var(--neon-blue);
+            padding: 12px; width: 100%; font-size: 1.1rem; cursor: pointer;
+            text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: bold;
+            border-radius: 5px; transition: 0.3s;
+            display: block; /* Ensure it takes full width */
+        }
+        .buy-btn:hover { background: var(--neon-blue); color: #000; }
+        .buy-btn:active { transform: scale(0.98); } /* Click effect */
+
+        /* Footer */
+        footer { background: #000; padding: 40px 20px; border-top: 2px solid var(--neon-pink); text-align: center; }
+        .footer-logo { font-family: 'Orbitron', sans-serif; font-size: 2rem; color: #fff; display: block; margin-bottom: 20px; }
+        .contact-info { margin-bottom: 20px; color: #ccc; }
+        
+        .return-btn {
+            background: transparent; color: var(--sale-red); border: 1px solid var(--sale-red);
+            padding: 12px 30px; font-size: 1rem; cursor: pointer; margin-top: 20px;
+            border-radius: 5px; text-transform: uppercase; font-weight: bold; font-family: 'Rajdhani', sans-serif;
+        }
+        .return-btn:hover { background: var(--sale-red); color: white; }
+
+        /* Modals */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center;
+            overflow-y: auto; padding: 20px; box-sizing: border-box;
+        }
+
+        .modal-content {
+            background: #111; border: 2px solid var(--neon-pink); padding: 25px;
+            border-radius: 15px; width: 100%; max-width: 450px; position: relative;
+            text-align: left; margin: auto;
+        }
+
+        .close { position: absolute; top: 10px; right: 15px; color: #fff; font-size: 30px; cursor: pointer; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; color: #aaa; margin-bottom: 5px; }
+        .form-group input, .form-group textarea {
+            width: 100%; padding: 12px; background: #000; border: 1px solid #444; 
+            color: white; border-radius: 5px; box-sizing: border-box;
+        }
+
+        .action-btn { width: 100%; padding: 15px; margin-top: 10px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .btn-whatsapp { background: #25D366; color: white; }
+        .btn-email { background: #EA4335; color: white; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            header { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contact-strip">
+        Email: alihaseebwattoo786000@gmail.com | WhatsApp: 0315 6968247
+    </div>
+
+    <header>
+        <div class="header-overlay">
+            <h1>PureAroma</h1>
+            <div class="tagline">Experience the Essence of Luxury</div>
+            <div class="founders">FOUNDERS: ALI HASEEB & HAMMAD JABBAR</div>
+        </div>
+    </header>
+
+    <div class="features-section">
+        <h2 class="section-title">OUR PROMISE</h2>
+        <div class="features-grid">
+            <div class="feature-box">
+                <i class="fas fa-truck feature-icon"></i>
+                <h3>Fast Delivery</h3>
+                <p>3-4 Days Delivery (Rs. 200)</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-undo-alt feature-icon"></i>
+                <h3>Easy Return</h3>
+                <p>7 Days Return Policy</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-gem feature-icon"></i>
+                <h3>Premium Quality</h3>
+                <p>Long Lasting Fragrance</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title" style="text-align:center;">FLASH SALE</h2>
+        <div class="products">
+            
+            <div class="product-card">
+                <div class="sale-badge">30% OFF</div>
+                <img src="https://fimgs.net/mdimg/perfume/375x500.31861.jpg" alt="Dior Sauvage" class="product-image">
+                <div class="product-title">Pure Sauvage</div>
+                <div class="price-container">
+                    <span class="old-price">Rs. 4,549</span>
+                    <span class="new-price">Rs. 3,199</span>
+                </div>
+                <button class="buy-btn" onclick="openBuyModal('Pure Sauvage', '3199', '8-10 Hours')">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <div class="sale-badge">41% OFF</div>
+                <img src="https://fimgs.net/mdimg/perfume/375x500.9828.jpg" alt="Creed Aventus" class="product-image">
+                <div class="product-title">Creed Aventus</div>
+                <div class="price-container">
+                    <span class="old-price">Rs. 7,599</span>
+                    <span class="new-price">Rs. 4,499</span>
+                </div>
+                <button class="buy-btn" onclick="openBuyModal('Creed Aventus', '4499', '10-12 Hours')">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <div class="sale-badge">20% OFF</div>
+                <img src="https://fimgs.net/mdimg/perfume/375x500.51816.jpg" alt="Royal Oud" class="product-image">
+                <div class="product-title">Royal Oud</div>
+                <div class="price-container">
+                    <span class="old-price">Rs. 1,800</span>
+                    <span class="new-price">Rs. 1,449</span>
+                </div>
+                <button class="buy-btn" onclick="openBuyModal('Royal Oud', '1449', '8+ Hours')">Buy Now</button>
+            </div>
+
+            <div class="product-card">
+                <div class="sale-badge">44% OFF</div>
+                <img src="https://www.junaidjamshed.com/media/catalog/product/j/a/janan_-1_1__2.jpg" alt="J. Janan" class="product-image">
+                <div class="product-title">J. Janan</div>
+                <div class="price-container">
+                    <span class="old-price">Rs. 4,500</span>
+                    <span class="new-price">Rs. 2,499</span>
+                </div>
+                <button class="buy-btn" onclick="openBuyModal('J. Janan', '2499', '6-8 Hours')">Buy Now</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <span class="footer-logo">PureAroma</span>
+        <div class="contact-info">
+            <p>Email: alihaseebwattoo786000@gmail.com</p>
+            <p>WhatsApp: 0315 6968247</p>
+        </div>
+        
+        <button class="return-btn" onclick="openReturnModal()">Request Return / Exchange</button>
+        
+        <p style="margin-top:20px; color:#555; font-size:0.8rem;">&copy; 2025 PureAroma.</p>
+    </footer>
+
+    <div id="buyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAllModals()">&times;</span>
+            <h2 style="color:var(--neon-blue); margin-top:0;">Order Details</h2>
+            <p style="color:#ddd; margin-bottom:5px;">Product: <strong id="m_product" style="color:#fff;"></strong></p>
+            <p style="color:#ddd; margin-bottom:5px;">Price: <strong id="m_price" style="color:var(--neon-pink);"></strong></p>
+            <p style="color:#ddd; margin-bottom:20px;">Lasting: <span id="m_lasting"></span></p>
+
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="b_name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="b_phone" placeholder="03xx-xxxxxxx">
+            </div>
+            <div class="form-group">
+                <label>Address</label>
+                <textarea id="b_address" rows="2" placeholder="Full Address"></textarea>
+            </div>
+
+            <button class="action-btn btn-whatsapp" onclick="submitOrder('whatsapp')">Order via WhatsApp</button>
+            <button class="action-btn btn-email" onclick="submitOrder('email')">Order via Email</button>
+        </div>
+    </div>
+
+    <div id="returnModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAllModals()">&times;</span>
+            <h2 style="color:var(--sale-red); margin-top:0;">Return Request</h2>
+            
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="r_name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label>Order Details</label>
+                <input type="text" id="r_order" placeholder="Which perfume?">
+            </div>
+            <div class="form-group">
+                <label>Reason</label>
+                <textarea id="r_reason" rows="2" placeholder="Why returning?"></textarea>
+            </div>
+            
+            <p style="color:#ff5555; font-size:0.8rem; border:1px solid #ff5555; padding:5px;">
+                ⚠️ You must attach photos/videos in the WhatsApp chat for approval.
+            </p>
+
+            <button class="action-btn btn-whatsapp" onclick="submitReturn('whatsapp')">Send Request (WhatsApp)</button>
+            <button class="action-btn btn-email" onclick="submitReturn('email')">Send Request (Email)</button>
+        </div>
+    </div>
+
+    <script>
+        // Variables to hold current selection
+        let currentProd = "";
+        let currentPrice = "";
+
+        // 1. OPEN BUY MODAL
+        function openBuyModal(prod, price, lasting) {
+            currentProd = prod;
+            currentPrice = price;
+            
+            document.getElementById('m_product').innerText = prod;
+            document.getElementById('m_price').innerText = "Rs. " + price;
+            document.getElementById('m_lasting').innerText = lasting;
+            
+            document.getElementById('buyModal').style.display = "flex";
+        }
+
+        // 2. OPEN RETURN MODAL
+        function openReturnModal() {
+            document.getElementById('returnModal').style.display = "flex";
+        }
+
+        // 3. CLOSE MODALS
+        function closeAllModals() {
+            document.getElementById('buyModal').style.display = "none";
+            document.getElementById('returnModal').style.display = "none";
+        }
+
+        // 4. SUBMIT ORDER
+        function submitOrder(type) {
+            const name = document.getElementById('b_name').value;
+            const phone = document.getElementById('b_phone').value;
+            const address = document.getElementById('b_address').value;
+
+            if(!name || !phone || !address) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            const text = `*NEW ORDER*\nProduct: ${currentProd}\nPrice: Rs. ${currentPrice}\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\n(Delivery: Rs. 200)`;
+            const encoded = encodeURIComponent(text);
+
+            if(type === 'whatsapp') {
+                window.location.href = `https://api.whatsapp.com/send?phone=923156968247&text=${encoded}`;
+            } else {
+                window.location.href = `mailto:alihaseebwattoo786000@gmail.com?subject=New Order&body=${encoded}`;
+            }
+            closeAllModals();
+        }
+
+        // 5. SUBMIT RETURN
+        function submitReturn(type) {
+            const name = document.getElementById('r_name').value;
+            const order = document.getElementById('r_order').value;
+            const reason = document.getElementById('r_reason').value;
+
+            if(!name || !order || !reason) {
+                alert("Please fill all fields!");
+                return;
+            }
+
+            const text = `*RETURN REQUEST*\nName: ${name}\nOrder: ${order}\nReason: ${reason}\n\n(I will attach photos/videos now)`;
+            const encoded = encodeURIComponent(text);
+
+            if(type === 'whatsapp') {
+                window.location.href = `https://api.whatsapp.com/send?phone=923156968247&text=${encoded}`;
+            } else {
+                window.location.href = `mailto:alihaseebwattoo786000@gmail.com?subject=Return Request&body=${encoded}`;
+            }
+            closeAllModals();
+        }
+
+        // Close on outside click
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('buyModal')) closeAllModals();
+            if (event.target == document.getElementById('returnModal')) closeAllModals();
+        }
+    </script>
+
+</body>
+</html>
