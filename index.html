@@ -25,7 +25,29 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent; /* Fix for mobile tap highlight */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* --- NO INTERNET SCREEN --- */
+        #offline-screen {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000;
+            z-index: 10000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        #offline-screen i { font-size: 4rem; color: var(--sale-red); margin-bottom: 20px; }
+        #offline-screen h2 { font-family: 'Orbitron', sans-serif; font-size: 2rem; margin: 0; }
+        #offline-screen p { color: #aaa; margin-top: 10px; }
+        #offline-screen button {
+            margin-top: 20px; padding: 10px 20px; background: var(--neon-blue); border: none;
+            font-weight: bold; cursor: pointer; border-radius: 5px;
         }
 
         /* Header */
@@ -105,10 +127,10 @@
             padding: 12px; width: 100%; font-size: 1.1rem; cursor: pointer;
             text-transform: uppercase; font-family: 'Orbitron', sans-serif; font-weight: bold;
             border-radius: 5px; transition: 0.3s;
-            display: block; /* Ensure it takes full width */
+            display: block; 
         }
         .buy-btn:hover { background: var(--neon-blue); color: #000; }
-        .buy-btn:active { transform: scale(0.98); } /* Click effect */
+        .buy-btn:active { transform: scale(0.98); } 
 
         /* Footer */
         footer { background: #000; padding: 40px 20px; border-top: 2px solid var(--neon-pink); text-align: center; }
@@ -124,7 +146,7 @@
 
         /* Modals */
         .modal {
-            display: none; /* Hidden by default */
+            display: none; 
             position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.95); align-items: center; justify-content: center;
             overflow-y: auto; padding: 20px; box-sizing: border-box;
@@ -157,101 +179,110 @@
 </head>
 <body>
 
-    <div class="contact-strip">
-        Email: alihaseebwattoo786000@gmail.com | WhatsApp: 0315 6968247
+    <div id="offline-screen">
+        <i class="fas fa-wifi"></i>
+        <h2>NO INTERNET</h2>
+        <p>Please connect to the internet to use PureAroma.</p>
+        <button onclick="window.location.reload()">RETRY</button>
     </div>
 
-    <header>
-        <div class="header-overlay">
-            <h1>PureAroma</h1>
-            <div class="tagline">Experience the Essence of Luxury</div>
-            <div class="founders">FOUNDERS: ALI HASEEB & HAMMAD JABBAR</div>
+    <div id="main-content">
+        <div class="contact-strip">
+            Email: alihaseebwattoo786000@gmail.com | WhatsApp: 0315 6968247
         </div>
-    </header>
 
-    <div class="features-section">
-        <h2 class="section-title">OUR PROMISE</h2>
-        <div class="features-grid">
-            <div class="feature-box">
-                <i class="fas fa-truck feature-icon"></i>
-                <h3>Fast Delivery</h3>
-                <p>3-4 Days Delivery (Rs. 200)</p>
+        <header>
+            <div class="header-overlay">
+                <h1>PureAroma</h1>
+                <div class="tagline">Experience the Essence of Luxury</div>
+                <div class="founders">FOUNDERS: ALI HASEEB & HAMMAD JABBAR</div>
             </div>
-            <div class="feature-box">
-                <i class="fas fa-undo-alt feature-icon"></i>
-                <h3>Easy Return</h3>
-                <p>7 Days Return Policy</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-gem feature-icon"></i>
-                <h3>Premium Quality</h3>
-                <p>Long Lasting Fragrance</p>
+        </header>
+
+        <div class="features-section">
+            <h2 class="section-title">OUR PROMISE</h2>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fas fa-truck feature-icon"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>3-4 Days Delivery (Rs. 200)</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-undo-alt feature-icon"></i>
+                    <h3>Easy Return</h3>
+                    <p>7 Days Return Policy</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-gem feature-icon"></i>
+                    <h3>Premium Quality</h3>
+                    <p>Long Lasting Fragrance</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <h2 class="section-title" style="text-align:center;">FLASH SALE</h2>
-        <div class="products">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;">FLASH SALE</h2>
+            <div class="products">
+                
+                <div class="product-card">
+                    <div class="sale-badge">30% OFF</div>
+                    <img src="https://fimgs.net/mdimg/perfume/375x500.31861.jpg" alt="Dior Sauvage" class="product-image">
+                    <div class="product-title">Dior Sauvage</div>
+                    <div class="price-container">
+                        <span class="old-price">Rs. 4,549</span>
+                        <span class="new-price">Rs. 3,199</span>
+                    </div>
+                    <button class="buy-btn" onclick="openBuyModal('Dior Sauvage', '3199', '8-10 Hours')">Buy Now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="sale-badge">41% OFF</div>
+                    <img src="https://fimgs.net/mdimg/perfume/375x500.9828.jpg" alt="Creed Aventus" class="product-image">
+                    <div class="product-title">Creed Aventus</div>
+                    <div class="price-container">
+                        <span class="old-price">Rs. 7,599</span>
+                        <span class="new-price">Rs. 4,499</span>
+                    </div>
+                    <button class="buy-btn" onclick="openBuyModal('Creed Aventus', '4499', '10-12 Hours')">Buy Now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="sale-badge">20% OFF</div>
+                    <img src="https://fimgs.net/mdimg/perfume/375x500.51816.jpg" alt="Royal Oud" class="product-image">
+                    <div class="product-title">Royal Oud</div>
+                    <div class="price-container">
+                        <span class="old-price">Rs. 1,800</span>
+                        <span class="new-price">Rs. 1,449</span>
+                    </div>
+                    <button class="buy-btn" onclick="openBuyModal('Royal Oud', '1449', '8+ Hours')">Buy Now</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="sale-badge">44% OFF</div>
+                    <img src="https://www.junaidjamshed.com/media/catalog/product/j/a/janan_-1_1__2.jpg" alt="J. Janan" class="product-image">
+                    <div class="product-title">J. Janan</div>
+                    <div class="price-container">
+                        <span class="old-price">Rs. 4,500</span>
+                        <span class="new-price">Rs. 2,499</span>
+                    </div>
+                    <button class="buy-btn" onclick="openBuyModal('J. Janan', '2499', '6-8 Hours')">Buy Now</button>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <span class="footer-logo">PureAroma</span>
+            <div class="contact-info">
+                <p>Email: alihaseebwattoo786000@gmail.com</p>
+                <p>WhatsApp: 0315 6968247</p>
+            </div>
             
-            <div class="product-card">
-                <div class="sale-badge">30% OFF</div>
-                <img src="https://fimgs.net/mdimg/perfume/375x500.31861.jpg" alt="Dior Sauvage" class="product-image">
-                <div class="product-title">Pure Sauvage</div>
-                <div class="price-container">
-                    <span class="old-price">Rs. 4,549</span>
-                    <span class="new-price">Rs. 3,199</span>
-                </div>
-                <button class="buy-btn" onclick="openBuyModal('Pure Sauvage', '3199', '8-10 Hours')">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <div class="sale-badge">41% OFF</div>
-                <img src="https://fimgs.net/mdimg/perfume/375x500.9828.jpg" alt="Creed Aventus" class="product-image">
-                <div class="product-title">Creed Aventus</div>
-                <div class="price-container">
-                    <span class="old-price">Rs. 7,599</span>
-                    <span class="new-price">Rs. 4,499</span>
-                </div>
-                <button class="buy-btn" onclick="openBuyModal('Creed Aventus', '4499', '10-12 Hours')">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <div class="sale-badge">20% OFF</div>
-                <img src="https://fimgs.net/mdimg/perfume/375x500.51816.jpg" alt="Royal Oud" class="product-image">
-                <div class="product-title">Royal Oud</div>
-                <div class="price-container">
-                    <span class="old-price">Rs. 1,800</span>
-                    <span class="new-price">Rs. 1,449</span>
-                </div>
-                <button class="buy-btn" onclick="openBuyModal('Royal Oud', '1449', '8+ Hours')">Buy Now</button>
-            </div>
-
-            <div class="product-card">
-                <div class="sale-badge">44% OFF</div>
-                <img src="https://www.junaidjamshed.com/media/catalog/product/j/a/janan_-1_1__2.jpg" alt="J. Janan" class="product-image">
-                <div class="product-title">J. Janan</div>
-                <div class="price-container">
-                    <span class="old-price">Rs. 4,500</span>
-                    <span class="new-price">Rs. 2,499</span>
-                </div>
-                <button class="buy-btn" onclick="openBuyModal('J. Janan', '2499', '6-8 Hours')">Buy Now</button>
-            </div>
-
-        </div>
+            <button class="return-btn" onclick="openReturnModal()">Request Return / Exchange</button>
+            
+            <p style="margin-top:20px; color:#555; font-size:0.8rem;">&copy; 2025 PureAroma.</p>
+        </footer>
     </div>
-
-    <footer>
-        <span class="footer-logo">PureAroma</span>
-        <div class="contact-info">
-            <p>Email: alihaseebwattoo786000@gmail.com</p>
-            <p>WhatsApp: 0315 6968247</p>
-        </div>
-        
-        <button class="return-btn" onclick="openReturnModal()">Request Return / Exchange</button>
-        
-        <p style="margin-top:20px; color:#555; font-size:0.8rem;">&copy; 2025 PureAroma.</p>
-    </footer>
 
     <div id="buyModal" class="modal">
         <div class="modal-content">
@@ -307,11 +338,27 @@
     </div>
 
     <script>
-        // Variables to hold current selection
+        // --- 1. INTERNET CHECKER ---
+        function checkInternet() {
+            const offlineScreen = document.getElementById('offline-screen');
+            const mainContent = document.getElementById('main-content');
+
+            if (navigator.onLine) {
+                offlineScreen.style.display = 'none';
+                mainContent.style.display = 'block';
+            } else {
+                offlineScreen.style.display = 'flex';
+                mainContent.style.display = 'none';
+            }
+        }
+        window.addEventListener('online', checkInternet);
+        window.addEventListener('offline', checkInternet);
+        window.onload = checkInternet;
+
+        // --- 2. MODAL FUNCTIONS ---
         let currentProd = "";
         let currentPrice = "";
 
-        // 1. OPEN BUY MODAL
         function openBuyModal(prod, price, lasting) {
             currentProd = prod;
             currentPrice = price;
@@ -323,18 +370,15 @@
             document.getElementById('buyModal').style.display = "flex";
         }
 
-        // 2. OPEN RETURN MODAL
         function openReturnModal() {
             document.getElementById('returnModal').style.display = "flex";
         }
 
-        // 3. CLOSE MODALS
         function closeAllModals() {
             document.getElementById('buyModal').style.display = "none";
             document.getElementById('returnModal').style.display = "none";
         }
 
-        // 4. SUBMIT ORDER
         function submitOrder(type) {
             const name = document.getElementById('b_name').value;
             const phone = document.getElementById('b_phone').value;
@@ -356,7 +400,6 @@
             closeAllModals();
         }
 
-        // 5. SUBMIT RETURN
         function submitReturn(type) {
             const name = document.getElementById('r_name').value;
             const order = document.getElementById('r_order').value;
@@ -378,7 +421,6 @@
             closeAllModals();
         }
 
-        // Close on outside click
         window.onclick = function(event) {
             if (event.target == document.getElementById('buyModal')) closeAllModals();
             if (event.target == document.getElementById('returnModal')) closeAllModals();
