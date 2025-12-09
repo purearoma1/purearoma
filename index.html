@@ -362,13 +362,14 @@
 
     <div id="successModal" class="modal">
         <div class="modal-content">
+            <span class="close" onclick="handleContinueShopping()">&times;</span>
             <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--neon-green); margin-bottom: 20px;"></i>
             <h2 style="color: var(--neon-green);">Order Placed Successfully!</h2>
             <p style="color: #ccc;">Thank you, <span id="success-name" style="color:white; font-weight:bold;"></span>.</p>
             <p style="color: #ccc;">We have received your order for:</p>
             <h3 style="color:var(--neon-blue); margin: 10px 0;"><span id="success-product"></span></h3>
             <p style="color: #888; font-size: 0.9rem; margin-top:10px;">We will verify your order shortly via phone.</p>
-            <button class="btn" onclick="closeSuccess()" style="background: var(--neon-green); color: #000; width: 100%; margin-top: 20px; padding: 15px;">CONTINUE SHOPPING</button>
+            <button class="btn" onclick="handleContinueShopping()" style="background: var(--neon-green); color: #000; width: 100%; margin-top: 20px; padding: 15px;">CONTINUE SHOPPING</button>
         </div>
     </div>
 
@@ -415,7 +416,6 @@
         let totalOrders = 28342; 
 
         // --- DEFAULT PRODUCT DATA (Fallback/Initial Load) ---
-        // Note: Ratings/ReviewCounts will be set via JS/Firebase logic on load.
         let defaultProducts = [
             { id: 0, title: "Dior Sauvage", oldPrice: 4549, price: 3199, img: "https://fimgs.net/mdimg/perfume/375x500.31861.jpg", gallery: ["https://fimgs.net/mdimg/perfume/375x500.31861.jpg"], lasting: "8-10 Hours", notes: "Bergamot, Pepper, Amberwood", bestFor: "Daily / Office / Gym", intensity: "Strong", desc: `<p><strong>The Essence of Wild Nature</strong></p><p>Dior Sauvage is not just a perfume; it is a declaration of freedom.</p>`, rating: 4.7, reviewCount: 550, lastUpdated: Date.now() },
             { id: 1, title: "Creed Aventus", oldPrice: 7599, price: 4499, img: "https://fimgs.net/mdimg/perfume/375x500.9828.jpg", gallery: ["https://fimgs.net/mdimg/perfume/375x500.9828.jpg"], lasting: "10-12 Hours", notes: "Pineapple, Birch, Musk", bestFor: "Events / Dates", intensity: "Very Strong", desc: `<p><strong>The King of Fragrances</strong></p><p>Creed Aventus is the most legendary niche fragrance in the world.</p>`, rating: 4.2, reviewCount: 220, lastUpdated: Date.now() },
@@ -429,14 +429,14 @@
         async function initFirebase() {
             try {
                 if (firebaseConfig.apiKey === "YOUR_API_KEY") {
-                    console.warn("🚨 Firebase not configured. Using local storage as fallback.");
+                    // console.warn("🚨 Firebase not configured. Using local storage as fallback.");
                     return false;
                 }
                 firebase.initializeApp(firebaseConfig);
                 db = firebase.firestore();
                 return true;
             } catch (e) {
-                console.error("Firebase Initialization Error:", e);
+                // console.error("Firebase Initialization Error:", e);
                 return false;
             }
         }
@@ -460,20 +460,19 @@
                         calculateDynamicStats();
                         // Save updated stats back to Firebase
                         await saveProductDataToFirebase();
-                        console.log("Data loaded and stats updated from Firebase.");
 
                     } else {
                         // First run: Upload default data
                         products = defaultProducts;
+                        calculateDynamicStats(); // Calculate initial stats
                         await saveProductDataToFirebase();
-                        console.log("Default data uploaded to Firebase.");
                     }
                 } catch (e) {
-                    console.error("Error fetching/setting Firebase data:", e);
                     products = defaultProducts; // Fallback to compiled defaults
+                    calculateDynamicStats();
                 }
             } else {
-                // FALLBACK MODE (using localStorage for persistence, though not the primary goal)
+                // FALLBACK MODE (using localStorage for persistence)
                 const storedProds = localStorage.getItem('myProducts');
                 if (storedProds) {
                     products = JSON.parse(storedProds);
@@ -483,8 +482,8 @@
                     products = defaultProducts;
                     calculateDynamicStats();
                 }
-                
             }
+            
             loadingSpinner.style.display = 'none';
             renderProducts();
             document.getElementById('total-orders-display').innerText = totalOrders.toLocaleString();
@@ -498,21 +497,19 @@
                         products: products,
                         totalOrders: totalOrders,
                         timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                    });
-                    console.log("Data saved to Firebase.");
-                    
+                    }, { merge: true });
                 } catch (e) {
-                    console.error("Error saving data to Firebase:", e);
+                    localStorage.setItem('myProducts', JSON.stringify(products));
+                    localStorage.setItem('totalOrderCount', totalOrders);
                 }
             } else {
-                // FALLBACK SAVE (Save to localStorage)
                 localStorage.setItem('myProducts', JSON.stringify(products));
                 localStorage.setItem('totalOrderCount', totalOrders);
             }
         }
 
 
-        // --- NEW STATS AND GROWTH LOGIC ---
+        // --- STATS AND GROWTH LOGIC ---
 
         function calculateDynamicStats() {
             const now = Date.now();
@@ -530,17 +527,12 @@
                     p.lastUpdated = now; // Reset timer
                 }
 
-                // 2. Apply Minimum Ratings (with small non-persistent visual noise)
+                // 2. Apply Minimum Ratings (Sauvage 4.6+, Others 4.0+)
                 let baseRating = 4.0;
-                if (p.id === 0) { // Dior Sauvage
-                    baseRating = 4.6;
-                }
+                if (p.id === 0) { baseRating = 4.6; } // Dior Sauvage
                 
-                // Ensure rating is at least the base, then add small visual random fluctuation (± 0.1)
                 let visualRating = parseFloat(p.rating);
-                if (visualRating < baseRating) {
-                     visualRating = baseRating; 
-                }
+                if (visualRating < baseRating) { visualRating = baseRating; }
                 
                 // Add small visual noise (0.0 to 0.1) that resets on reload
                 visualRating = visualRating + (Math.random() * 0.1); 
@@ -561,9 +553,8 @@
             document.getElementById('supportModal').style.display = 'flex';
         }
 
-        // --- ORDER FUNCTIONS ---
+        // --- FIXED ORDER FUNCTIONS ---
         async function placeOrderAutomatic() {
-            // ... (Validation and loading states omitted for brevity but remain the same)
             const name = document.getElementById('order-name').value;
             const phone = document.getElementById('order-phone').value;
             const address = document.getElementById('order-address').value;
@@ -580,6 +571,7 @@
             const grandTotal = itemTotal + deliveryCost;
             const deliveryText = (deliveryCost === 0) ? "FREE (Buy 2+)" : "Rs. 200";
 
+            // --- FIX: PHONE AND ADDRESS ADDED TO PAYLOAD ---
             fetch("https://formsubmit.co/ajax/purearoma001@gmail.com", {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -587,17 +579,25 @@
                     _subject: "NEW ORDER: " + currentProduct.title,
                     _template: "table",
                     Product: currentProduct.title,
+                    Quantity: currentQty, 
+                    Price_Each: "Rs. " + currentProduct.price,
                     Total_Bill: "Rs. " + grandTotal,
                     Customer_Name: name,
+                    Customer_Phone: phone, // FIXED
+                    Shipping_Address: address // FIXED
                 })
             })
             .then(response => response.json())
             .then(async data => {
-                await incrementOrderCounter(); // Increment and save to Firebase
+                await incrementOrderCounter();
                 document.getElementById('success-name').innerText = name;
                 document.getElementById('success-product').innerText = currentProduct.title + " (x" + currentQty + ")";
                 document.getElementById('successModal').style.display = 'flex';
                 document.getElementById('product-page').classList.add('hidden');
+                
+                document.getElementById('order-name').value = '';
+                document.getElementById('order-phone').value = '';
+                document.getElementById('order-address').value = '';
             })
             .catch((error) => {
                 alert("Network error! Try WhatsApp.");
@@ -619,7 +619,7 @@
                 return; 
             }
             
-            await incrementOrderCounter(); // Increment and save to Firebase
+            await incrementOrderCounter();
 
             const itemTotal = currentProduct.price * currentQty;
             const grandTotal = itemTotal + deliveryCost;
@@ -628,6 +628,12 @@
             window.open(`https://api.whatsapp.com/send?phone=923156968247&text=${encodeURIComponent(msg)}`, '_blank');
         }
 
+        // --- FIXED CONTINUE SHOPPING ACTION ---
+        function handleContinueShopping() {
+            // Hides modal and shows home page (Fixes the reported bug)
+            document.getElementById('successModal').style.display = 'none';
+            showHome();
+        }
 
         // --- REST OF THE CODE (UI Rendering) ---
         
@@ -694,7 +700,7 @@
             window.scrollTo(0,0);
         }
 
-        // --- REMAINING HELPER FUNCTIONS (Simplified for space) ---
+        // --- REMAINING HELPER FUNCTIONS (Admin/Utility) ---
         function switchImage(src) { document.getElementById('detail-img').src = src; }
         function changeQty(delta) { currentQty += delta; if (currentQty < 1) currentQty = 1; updateBill(); }
         function renderReviews(prodId) {
